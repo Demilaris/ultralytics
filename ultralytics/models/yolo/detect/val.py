@@ -6,13 +6,13 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from ultralytics.data import build_dataloader, build_yolo_dataset, converter
-from ultralytics.engine.validator import BaseValidator
-from ultralytics.utils import LOGGER, ops
-from ultralytics.utils.checks import check_requirements
-from ultralytics.utils.metrics import ConfusionMatrix, DetMetrics, box_iou
-from ultralytics.utils.plotting import output_to_target, plot_images
-from ultralytics.utils.torch_utils import de_parallel
+from my_ultralytics.ultralytics.ultralytics.data import build_dataloader, build_yolo_dataset, converter
+from my_ultralytics.ultralytics.ultralytics.engine.validator import BaseValidator
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER, ops
+from my_ultralytics.ultralytics.ultralytics.utils.checks import check_requirements
+from my_ultralytics.ultralytics.ultralytics.utils.metrics import ConfusionMatrix, DetMetrics, box_iou
+from my_ultralytics.ultralytics.ultralytics.utils.plotting import output_to_target, plot_images
+from my_ultralytics.ultralytics.ultralytics.utils.torch_utils import de_parallel
 
 
 class DetectionValidator(BaseValidator):

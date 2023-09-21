@@ -8,7 +8,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from ultralytics.utils import TQDM
+from my_ultralytics.ultralytics.ultralytics.utils import TQDM
 
 
 def coco91_to_coco80_class():

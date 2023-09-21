@@ -1,8 +1,8 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 
-from ultralytics.engine.model import Model
-from ultralytics.models import yolo  # noqa
-from ultralytics.nn.tasks import ClassificationModel, DetectionModel, PoseModel, SegmentationModel
+from my_ultralytics.ultralytics.ultralytics.engine.model import Model
+from my_ultralytics.ultralytics.ultralytics.models import yolo  # noqa
+from my_ultralytics.ultralytics.ultralytics.nn.tasks import ClassificationModel, DetectionModel, PoseModel, SegmentationModel
 
 
 class YOLO(Model):

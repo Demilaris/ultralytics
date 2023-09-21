@@ -2,11 +2,11 @@
 
 import torch
 
-from ultralytics.data import ClassificationDataset, build_dataloader
-from ultralytics.engine.validator import BaseValidator
-from ultralytics.utils import LOGGER
-from ultralytics.utils.metrics import ClassifyMetrics, ConfusionMatrix
-from ultralytics.utils.plotting import plot_images
+from my_ultralytics.ultralytics.ultralytics.data import ClassificationDataset, build_dataloader
+from my_ultralytics.ultralytics.ultralytics.engine.validator import BaseValidator
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER
+from my_ultralytics.ultralytics.ultralytics.utils.metrics import ClassifyMetrics, ConfusionMatrix
+from my_ultralytics.ultralytics.ultralytics.utils.plotting import plot_images
 
 
 class ClassificationValidator(BaseValidator):

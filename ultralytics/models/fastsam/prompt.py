@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from PIL import Image
 
-from ultralytics.utils import TQDM
+from my_ultralytics.ultralytics.ultralytics.utils import TQDM
 
 
 class FastSAMPrompt:

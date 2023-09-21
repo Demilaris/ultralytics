@@ -11,7 +11,7 @@ import torch
 import torch.nn.functional as F
 import torchvision
 
-from ultralytics.utils import LOGGER
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER
 
 
 class Profile(contextlib.ContextDecorator):

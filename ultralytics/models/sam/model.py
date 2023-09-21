@@ -5,8 +5,8 @@ SAM model interface
 
 from pathlib import Path
 
-from ultralytics.engine.model import Model
-from ultralytics.utils.torch_utils import model_info
+from my_ultralytics.ultralytics.ultralytics.engine.model import Model
+from my_ultralytics.ultralytics.ultralytics.utils.torch_utils import model_info
 
 from .build import build_sam
 from .predict import Predictor

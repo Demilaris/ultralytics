@@ -2,8 +2,8 @@
 """
 RT-DETR model interface
 """
-from ultralytics.engine.model import Model
-from ultralytics.nn.tasks import RTDETRDetectionModel
+from my_ultralytics.ultralytics.ultralytics.engine.model import Model
+from my_ultralytics.ultralytics.ultralytics.nn.tasks import RTDETRDetectionModel
 
 from .predict import RTDETRPredictor
 from .train import RTDETRTrainer

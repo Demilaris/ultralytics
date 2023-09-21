@@ -5,13 +5,13 @@ import sys
 from pathlib import Path
 from typing import Union
 
-from ultralytics.cfg import TASK2DATA, get_cfg, get_save_dir
-from ultralytics.hub.utils import HUB_WEB_ROOT
-from ultralytics.nn.tasks import attempt_load_one_weight, guess_model_task, nn, yaml_model_load
-from ultralytics.utils import ASSETS, DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, RANK, callbacks, emojis, yaml_load
-from ultralytics.utils.checks import check_file, check_imgsz, check_pip_update_available, check_yaml
-from ultralytics.utils.downloads import GITHUB_ASSETS_STEMS
-from ultralytics.utils.torch_utils import smart_inference_mode
+from my_ultralytics.ultralytics.ultralytics.cfg import TASK2DATA, get_cfg, get_save_dir
+from my_ultralytics.ultralytics.ultralytics.hub.utils import HUB_WEB_ROOT
+from my_ultralytics.ultralytics.ultralytics.nn.tasks import attempt_load_one_weight, guess_model_task, nn, yaml_model_load
+from my_ultralytics.ultralytics.ultralytics.utils import ASSETS, DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, RANK, callbacks, emojis, yaml_load
+from my_ultralytics.ultralytics.ultralytics.utils.checks import check_file, check_imgsz, check_pip_update_available, check_yaml
+from my_ultralytics.ultralytics.ultralytics.utils.downloads import GITHUB_ASSETS_STEMS
+from my_ultralytics.ultralytics.ultralytics.utils.torch_utils import smart_inference_mode
 
 
 class Model:

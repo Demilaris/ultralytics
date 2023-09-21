@@ -2,10 +2,10 @@
 
 import requests
 
-from ultralytics.data.utils import HUBDatasetStats
-from ultralytics.hub.auth import Auth
-from ultralytics.hub.utils import HUB_API_ROOT, HUB_WEB_ROOT, PREFIX
-from ultralytics.utils import LOGGER, SETTINGS
+from ...ultralytics.data.utils import HUBDatasetStats
+from ...ultralytics.hub.auth import Auth
+from ...ultralytics.hub.utils import HUB_API_ROOT, HUB_WEB_ROOT, PREFIX
+from ...ultralytics.utils import LOGGER, SETTINGS
 
 
 def login(api_key=''):

@@ -22,7 +22,7 @@ import torch
 import yaml
 from tqdm import tqdm as tqdm_original
 
-from ultralytics import __version__
+from my_ultralytics.ultralytics.ultralytics import __version__
 
 # PyTorch Multi-GPU DDP Constants
 RANK = int(os.getenv('RANK', -1))
@@ -822,8 +822,8 @@ class SettingsManager(dict):
         import copy
         import hashlib
 
-        from ultralytics.utils.checks import check_version
-        from ultralytics.utils.torch_utils import torch_distributed_zero_first
+        from my_ultralytics.ultralytics.ultralytics.utils.checks import check_version
+        from my_ultralytics.ultralytics.ultralytics.utils.torch_utils import torch_distributed_zero_first
 
         git_dir = get_git_dir()
         root = git_dir or Path()

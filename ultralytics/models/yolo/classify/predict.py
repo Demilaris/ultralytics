@@ -2,9 +2,9 @@
 
 import torch
 
-from ultralytics.engine.predictor import BasePredictor
-from ultralytics.engine.results import Results
-from ultralytics.utils import DEFAULT_CFG, ops
+from my_ultralytics.ultralytics.ultralytics.engine.predictor import BasePredictor
+from my_ultralytics.ultralytics.ultralytics.engine.results import Results
+from my_ultralytics.ultralytics.ultralytics.utils import DEFAULT_CFG, ops
 
 
 class ClassificationPredictor(BasePredictor):

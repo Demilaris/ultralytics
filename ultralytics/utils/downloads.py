@@ -12,7 +12,7 @@ from urllib import parse, request
 import requests
 import torch
 
-from ultralytics.utils import LOGGER, TQDM, checks, clean_url, emojis, is_online, url2file
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER, TQDM, checks, clean_url, emojis, is_online, url2file
 
 # Define Ultralytics GitHub assets maintained at https://github.com/ultralytics/assets
 GITHUB_ASSETS_REPO = 'ultralytics/assets'
@@ -341,7 +341,7 @@ def get_github_assets(repo='ultralytics/assets', version='latest', retry=False):
 
 def attempt_download_asset(file, repo='ultralytics/assets', release='v0.0.0'):
     """Attempt file download from GitHub release assets if not found locally. release = 'latest', 'v6.2', etc."""
-    from ultralytics.utils import SETTINGS  # scoped for circular import
+    from my_ultralytics.ultralytics.ultralytics.utils import SETTINGS  # scoped for circular import
 
     # YOLOv3/5u updates
     file = str(file)

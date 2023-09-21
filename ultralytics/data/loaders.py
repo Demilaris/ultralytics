@@ -15,9 +15,9 @@ import requests
 import torch
 from PIL import Image
 
-from ultralytics.data.utils import IMG_FORMATS, VID_FORMATS
-from ultralytics.utils import LOGGER, is_colab, is_kaggle, ops
-from ultralytics.utils.checks import check_requirements
+from my_ultralytics.ultralytics.ultralytics.data.utils import IMG_FORMATS, VID_FORMATS
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER, is_colab, is_kaggle, ops
+from my_ultralytics.ultralytics.ultralytics.utils.checks import check_requirements
 
 
 @dataclass

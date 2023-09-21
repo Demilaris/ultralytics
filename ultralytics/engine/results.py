@@ -12,9 +12,9 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from ultralytics.data.augment import LetterBox
-from ultralytics.utils import LOGGER, SimpleClass, deprecation_warn, ops
-from ultralytics.utils.plotting import Annotator, colors, save_one_box
+from my_ultralytics.ultralytics.ultralytics.data.augment import LetterBox
+from my_ultralytics.ultralytics.ultralytics.utils import LOGGER, SimpleClass, deprecation_warn, ops
+from my_ultralytics.ultralytics.ultralytics.utils.plotting import Annotator, colors, save_one_box
 
 
 class BaseTensor(SimpleClass):
