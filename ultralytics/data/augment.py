@@ -9,11 +9,11 @@ import numpy as np
 import torch
 import torchvision.transforms as T
 
-from ultralytics.utils import LOGGER, colorstr
-from ultralytics.utils.checks import check_version
-from ultralytics.utils.instance import Instances
-from ultralytics.utils.metrics import bbox_ioa
-from ultralytics.utils.ops import segment2box
+from ...ultralytics.utils import LOGGER, colorstr
+from ...ultralytics.utils.checks import check_version
+from ...ultralytics.utils.instance import Instances
+from ...ultralytics.utils.metrics import bbox_ioa
+from ...ultralytics.utils.ops import segment2box
 
 from .utils import polygons2masks, polygons2masks_overlap
 
@@ -654,13 +654,13 @@ class Albumentations:
             check_version(A.__version__, '1.0.3', hard=True)  # version requirement
 
             T = [
-                A.Blur(p=0.01),
+                A.Blur(p=0.2),
                 A.MedianBlur(p=0.01),
                 A.ToGray(p=0.01),
-                A.CLAHE(p=0.01),
                 A.RandomBrightnessContrast(p=0.0),
                 A.RandomGamma(p=0.0),
-                A.ImageCompression(quality_lower=75, p=0.0)]  # transforms
+                A.Downscale(interpolation=4),
+                A.ImageCompression(quality_lower=10,quality_upper = 29, p=0.0,always_apply=True)]  # transforms
             self.transform = A.Compose(T, bbox_params=A.BboxParams(format='yolo', label_fields=['class_labels']))
 
             LOGGER.info(prefix + ', '.join(f'{x}'.replace('always_apply=False, ', '') for x in T if x.p))
