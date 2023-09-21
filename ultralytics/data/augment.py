@@ -9,11 +9,11 @@ import numpy as np
 import torch
 import torchvision.transforms as T
 
-from my_ultralytics.ultralytics.ultralytics.utils import LOGGER, colorstr
-from my_ultralytics.ultralytics.ultralytics.utils.checks import check_version
-from my_ultralytics.ultralytics.ultralytics.utils.instance import Instances
-from my_ultralytics.ultralytics.ultralytics.utils.metrics import bbox_ioa
-from my_ultralytics.ultralytics.ultralytics.utils.ops import segment2box
+from ultralytics.utils import LOGGER, colorstr
+from ultralytics.utils.checks import check_version
+from ultralytics.utils.instance import Instances
+from ultralytics.utils.metrics import bbox_ioa
+from ultralytics.utils.ops import segment2box
 
 from .utils import polygons2masks, polygons2masks_overlap
 
@@ -653,25 +653,14 @@ class Albumentations:
 
             check_version(A.__version__, '1.0.3', hard=True)  # version requirement
 
-            # T = [
-            #     A.Blur(blur_limit=7, p=0.1),
-            #     A.ToGray(p=0.1),
-            #     A.CLAHE(p=0.1),
-            #     A.RandomBrightnessContrast(p=0.1),
-            #     A.RandomGamma(p=0.1),
-            #     A.GridDistortion(p=0.0),                                        # not needed, makes image unreal
-            #     A.Sharpen(p=0.1),
-            #     A.GaussNoise(p=0.1),
-            # ]
             T = [
                 A.Blur(p=0.01),
                 A.MedianBlur(p=0.01),
                 A.ToGray(p=0.01),
+                A.CLAHE(p=0.01),
                 A.RandomBrightnessContrast(p=0.0),
                 A.RandomGamma(p=0.0),
-                A.HueSaturationValue,
-                A.GaussianBlur(blur_limit=(7, 15)),
-                A.ImageCompression(quality_lower=20,quality_upper= 80, p=0.0, always_apply=True)]  # transforms
+                A.ImageCompression(quality_lower=75, p=0.0)]  # transforms
             self.transform = A.Compose(T, bbox_params=A.BboxParams(format='yolo', label_fields=['class_labels']))
 
             LOGGER.info(prefix + ', '.join(f'{x}'.replace('always_apply=False, ', '') for x in T if x.p))
@@ -796,10 +785,9 @@ def v8_transforms(dataset, imgsz, hyp, stretch=False):
         pre_transform,
         MixUp(dataset, pre_transform=pre_transform, p=hyp.mixup),
         Albumentations(p=1.0),
-        # RandomHSV(hgain=hyp.hsv_h, sgain=hyp.hsv_s, vgain=hyp.hsv_v),
-        #  RandomFlip(direction='vertical', p=hyp.flipud),
-        # RandomFlip(direction='horizontal', p=hyp.fliplr, flip_idx=flip_idx)
-        ])  # transforms
+        RandomHSV(hgain=hyp.hsv_h, sgain=hyp.hsv_s, vgain=hyp.hsv_v),
+        RandomFlip(direction='vertical', p=hyp.flipud),
+        RandomFlip(direction='horizontal', p=hyp.fliplr, flip_idx=flip_idx)])  # transforms
 
 
 # Classification augmentations -----------------------------------------------------------------------------------------
@@ -839,20 +827,19 @@ def classify_albumentations(
 
         check_version(A.__version__, '1.0.3', hard=True)  # version requirement
         if augment:  # Resize and crop
-            # T = [A.RandomResizedCrop(height=size, width=size, scale=scale)]
+            T = [A.RandomResizedCrop(height=size, width=size, scale=scale)]
             if auto_aug:
                 # TODO: implement AugMix, AutoAug & RandAug in albumentations
                 LOGGER.info(f'{prefix}auto augmentations are currently not supported')
             else:
                 if hflip > 0:
                     T += [A.HorizontalFlip(p=hflip)]
-                # if vflip > 0:
-                #     T += [A.VerticalFlip(p=vflip)]
+                if vflip > 0:
+                    T += [A.VerticalFlip(p=vflip)]
                 if any((hsv_h, hsv_s, hsv_v)):
                     T += [A.ColorJitter(*hsv2colorjitter(hsv_h, hsv_s, hsv_v))]  # brightness, contrast, saturation, hue
         else:  # Use fixed crop for eval set (reproducibility)
             T = [A.SmallestMaxSize(max_size=size), A.CenterCrop(height=size, width=size)]
-        T += [A.ImageCompression(quality_lower=20,quality_upper= 80, p=0.0, always_apply=True)]
         T += [A.Normalize(mean=mean, std=std), ToTensorV2()]  # Normalize and convert to Tensor
         LOGGER.info(prefix + ', '.join(f'{x}'.replace('always_apply=False, ', '') for x in T if x.p))
         return A.Compose(T)
